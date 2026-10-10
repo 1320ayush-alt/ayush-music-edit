@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101322">
+<title>BeatForge Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand-mark">♫</div>
+  <div><div class="brand">BEATFORGE <span>STUDIO</span></div><div class="subbrand">Your browser-based mini recording studio</div></div>
+  <div class="privacy"><span class="dot"></span> LOCAL-FIRST</div>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">RECORD · CREATE · MIX</div>
+    <h1>Make your sound.<br><span>Find your rhythm.</span></h1>
+    <p>Record vocals, build a beat, and play them together — all in your browser.</p>
+  </section>
+
+  <div class="notice"><strong>Private by design:</strong> recordings stay in this browser session unless you download them. Refreshing or closing the page may clear temporary recordings.</div>
+
+  <section class="panel">
+    <div class="panel-head"><div><div class="kicker">01 / VOCALS</div><h2>Voice recorder</h2></div><span class="pill" id="micStatus">MIC NOT CONNECTED</span></div>
+    <p class="muted">Allow microphone access, then record your singing. Use headphones if you want to avoid the beat leaking into the microphone.</p>
+    <div class="controls">
+      <button class="primary" id="recordBtn">● Start recording</button>
+      <button id="stopRecordBtn" disabled>■ Stop</button>
+      <button id="playVoiceBtn" disabled>▶ Play voice</button>
+      <button id="downloadVoiceBtn" disabled>↓ Download voice</button>
+    </div>
+    <div class="record-state"><span class="pulse" id="recordPulse"></span><span id="recordMessage">Ready when you are.</span><strong id="recordTimer">00:00.0</strong></div>
+    <audio id="voiceAudio" controls></audio>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><div><div class="kicker">02 / RHYTHM</div><h2>Beat maker</h2></div><span class="pill">16-STEP SEQUENCER</span></div>
+    <p class="muted">Tap the grid to switch drum hits on or off. Choose a tempo, then preview your pattern.</p>
+    <div class="beat-toolbar">
+      <label>Tempo <strong id="bpmLabel">100 BPM</strong><input id="bpm" type="range" min="60" max="180" value="100"></label>
+      <label>Bars <select id="bars"><option value="2">2 bars</option><option value="4" selected>4 bars</option><option value="8">8 bars</option></select></label>
+      <label>Master beat volume <strong id="beatVolLabel">70%</strong><input id="beatVol" type="range" min="0" max="100" value="70"></label>
+    </div>
+    <div class="sequencer-wrap"><div id="sequencer" class="sequencer"></div></div>
+    <div class="controls">
+      <button class="primary" id="playBeatBtn">▶ Play beat</button>
+      <button id="stopBeatBtn" disabled>■ Stop beat</button>
+      <button id="clearBeatBtn">Clear pattern</button>
+      <button id="downloadPatternBtn">↓ Save pattern JSON</button>
+    </div>
+    <div class="hint">Tip: Kick on steps 1, 5, 9, 13 and snare on steps 5 and 13 are a good starting point.</div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><div><div class="kicker">03 / MIX</div><h2>Voice + beat</h2></div><span class="pill">MIX PREVIEW</span></div>
+    <p class="muted">Play the vocal recording and beat together. Adjust their levels independently.</p>
+    <div class="mix-controls">
+      <label>Voice volume <strong id="voiceVolLabel">100%</strong><input id="voiceVol" type="range" min="0" max="150" value="100"></label>
+      <label>Beat volume <strong id="mixBeatVolLabel">70%</strong><input id="mixBeatVol" type="range" min="0" max="100" value="70"></label>
+    </div>
+    <div class="controls">
+      <button class="primary" id="playMixBtn" disabled>▶ Play together</button>
+      <button id="stopMixBtn" disabled>■ Stop playback</button>
+      <button id="exportMixBtn" disabled>↓ Export mixed audio</button>
+    </div>
+    <div id="mixMessage" class="hint">Record a vocal first to enable the full mix. Beat-only preview works above.</div>
+    <audio id="mixAudio" controls></audio>
+  </section>
+
+
+
+  <footer><span>BEATFORGE STUDIO</span><span>Made by Ayush Savita</span></footer>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
